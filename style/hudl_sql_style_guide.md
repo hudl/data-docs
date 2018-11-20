@@ -20,6 +20,10 @@ description: A guide to writing clean, clear, and consistent SQL.
 
 * No tabs. 2 spaces per indent.
 * No trailing whitespace.
+* 80 character limit per line
+* Include links to hudl id constants or references to important links
+* All tables and views should adhere to all lowercase, words separated with underscores
+* Always use AS when creating aliases for columns, tables, subqueries
 * Always capitalize SQL keywords (e.g., `SELECT` or `AS`)
 * Variable names should be underscore separated:
 
@@ -71,24 +75,15 @@ SELECT
 FROM ...
 ```
 
-Always rename all columns when selecting with table aliases:
-
-```sql
-SELECT
-  projects.name AS project_name,
-  COUNT(backings.id) AS backings_count
-FROM ksr.backings AS backings
-JOIN ksr.projects AS projects ON ...
-```
-
 
 Long Window functions should be split across multiple lines: one for the `PARTITION`, `ORDER` and frame clauses, aligned to the `PARTITION` keyword. Partition keys should be one-per-line, aligned to the first, with aligned commas. Order (`ASC`, `DESC`) should always be explicit. All window functions should be aliased.
 
 ```sql
-SUM(1) OVER (PARTITION BY category_id,
-                          year
-             ORDER BY pledged DESC
-             ROWS UNBOUNDED PRECEDING) AS category_year
+SUM(1) OVER (
+  PARTITION BY category_id,
+               year
+  ORDER BY pledged DESC
+  ROWS UNBOUNDED PRECEDING) AS category_year
 ```
 
 ## `FROM`
@@ -131,7 +126,7 @@ JOIN ksr.backings AS backings ON projects.id = backings.project_id
 ...
 ```
 
-The `ON` keyword and condition goes on the `INNER JOIN` line:
+The `ON` keyword and condition goes on the `JOIN` line:
 
 ```sql
 SELECT
@@ -177,6 +172,18 @@ WHERE
   AND deadline >= '2015-01-01'
 ...
 ```
+
+## `GROUP BY`
+
+GROUP BY/ORDER BY (group by and order by on line by itself, list of fields start on next line 2 spaces in. 
+
+```SQL
+GROUP BY 
+  schoolid, 
+  name, 
+  organization_type
+```
+
 
 ## `CASE`
 
@@ -258,5 +265,75 @@ JOIN backers ON backers_and_creators ON backers.backer_id = backers_and_creators
 ```
 
 Always use CTEs over inlined subqueries.
+
+## Comments
+Include comments for any code that isn’t obvious
+Comments that are one line can be done with double dash
+
+```SQL
+--This is a comment
+```
+
+Comments that are longer and exceed 80 character limit should be down using /* as seen below
+
+```SQL
+/*
+Large block of comments
+*/
+```
+
+Don’t commit code to master with code commented out unless we have a good reason for it
+
+Use Ramzi style Dividers between CTEs, subqueries
+https://github.com/hudl/data-redshift-maintenance/blob/master/src/dbt/models/performance/atrest/tables.sql#L25 
+
+## Parentheses
+Open parentheses will start on same line and then start code on next line 2 spaces in
+Closing parentheses will be on the line after end of code, alias can be on same line as closing parentheses
+One exception is nested parentheses in where (any boolean comparisons) clause. If it can fit on one line put it on one line otherwise stick with parentheses rules
+Examples below
+
+```SQL
+SUM(1) OVER (
+  PARTITION BY
+    category_id,
+    year
+  ORDER BY pledged DESC
+  ROWS UNBOUNDED PRECEDING
+) AS category_year
+
+
+SELECT 
+FROM
+WHERE sport in (
+  ‘Football’,
+  ‘Basketball’
+)
+WITH table_cte AS (
+  SELECT
+    ..
+  FROM
+)
+
+
+SELECT
+  …
+FROM (
+  SELECT
+    ..
+  FROM
+)
+```
+
+## IN/NOT IN Operator
+If you have 4 or less items you have the option to list out on one single line, otherwise use parentheses guidance shown below: 
+
+```SQL
+AND etas.state NOT IN (
+  'Rhode Island',
+  'South Dakota',
+   'Alaska',
+)
+```
 
 ## Tips
