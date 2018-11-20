@@ -83,7 +83,8 @@ SUM(1) OVER (
   PARTITION BY category_id,
                year
   ORDER BY pledged DESC
-  ROWS UNBOUNDED PRECEDING) AS category_year
+  ROWS UNBOUNDED PRECEDING
+  ) AS category_year
 ```
 
 ## `FROM`
@@ -274,7 +275,7 @@ Comments that are one line can be done with double dash
 --This is a comment
 ```
 
-Comments that are longer and exceed 80 character limit should be down using /* as seen below
+Multi-line comments should be done using /*
 
 ```SQL
 /*
