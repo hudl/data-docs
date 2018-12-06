@@ -84,7 +84,7 @@ SUM(1) OVER (
                year
   ORDER BY pledged DESC
   ROWS UNBOUNDED PRECEDING
-  ) AS category_year
+) AS category_year
 ```
 
 ## `FROM`
@@ -168,8 +168,7 @@ SELECT
   name,
   goal
 FROM ksr.projects AS projects
-WHERE
-  country = 'US'
+WHERE country = 'US'
   AND deadline >= '2015-01-01'
 ...
 ```
