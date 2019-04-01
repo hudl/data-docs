@@ -13,6 +13,9 @@ This dictionary is meant to be a helpful, quick, and lightweight introduction to
 ### Tools
 | Tool | Use | Link |
 |:-----|:---:|-----:|
-| Amazon Redshift | Amazon Redshift is a cloud-based data warehouse in which Hudl stores most of its data. | [Amazon Redshift website](https://aws.amazon.com/redshift/)|
-|  | | |
-|Data Build Tool (dbt)| DS uses dbt to model and transform data that's already in the data warehouse. | stuff |
+| Amazon Redshift | Amazon Redshift is a cloud-based data warehouse in which Hudl stores most of its data. | [Amazon Redshift website](https://aws.amazon.com/redshift/) |
+| Test Environment | DAs use the test environment to validate changes to data models before those changes are deployed to production. |  |
+| re:dash | re:dash is an open-source SQL-based business intelligence tool. We use re:dash to query Hudl's database | [re:dash](https://fulla.thorhudl.com/queries/new) |
+| Metabase | Metabase is an open-source point-and-click business intelligence tool. Decision Science still maintains our Hudl's Metabase instance, but we hope to sunset it sometime in the near future. | [Hudl Metabase Instance](https://metabase.hudltools.com/) |
+| Looker | Looker is a proprietary point-and-click business intelligence tool. In order to achieve Self Service, DS populates Looker with trusted, curated data models. | [Hudl Looker Instance](https://hudl.looker.com/browse) |
+| Data Build Tool (dbt) | DS uses dbt to model and transform data that's already in the data warehouse. |  [dbt](https://docs.getdbt.com/) |
