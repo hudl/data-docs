@@ -80,9 +80,11 @@ Long Window functions should be split across multiple lines: one for the `PARTIT
 
 ```sql
 SUM(1) OVER (
-  PARTITION BY category_id,
-               year
-  ORDER BY pledged DESC
+  PARTITION BY 
+    category_id,
+    year
+  ORDER BY 
+    pledged DESC
   ROWS UNBOUNDED PRECEDING
 ) AS category_year
 ```
