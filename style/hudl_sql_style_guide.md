@@ -26,7 +26,7 @@ description: A guide to writing clean, clear, and consistent SQL.
 * Always use AS when creating aliases for columns, tables, subqueries
 * Always capitalize SQL keywords (e.g., `SELECT` or `AS`)
 * Always capitalize SQL datatypes (e.g., `VARCHAR` or `DATE`)
-* Variable names should be underscore separated:
+* Variable names and identifiers should be lower case and underscore separated and all other text should be capitalized:
 
   __GOOD__:
   `SELECT COUNT(*) AS backers_count`
