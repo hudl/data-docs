@@ -45,6 +45,7 @@ description: A guide to writing clean, clear, and consistent SQL.
   `SELECT ksr.backings AS b`
 
 * Use [Common Table Expressions](http://www.postgresql.org/docs/8.4/static/queries-with.html) (CTEs) early and often, and name them well.
+* All dates should be formatted as 'YYYY-MM-DD'
 
 ## `SELECT`
 
