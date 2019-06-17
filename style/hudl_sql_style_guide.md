@@ -27,6 +27,7 @@ description: A guide to writing clean, clear, and consistent SQL.
 * Always capitalize SQL keywords (e.g., `SELECT` or `AS`)
 * Always capitalize SQL datatypes (e.g., `VARCHAR` or `DATE`)
 * Variable names and identifiers should be lower case and underscore separated and all other text should be capitalized:
+* All dates should be formatted as 'YYYY-MM-DD'
 
   __GOOD__:
   `SELECT COUNT(*) AS backers_count`
