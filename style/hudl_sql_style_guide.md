@@ -212,14 +212,15 @@ SUM(1) OVER (
   PARTITION BY
     category_id,
     year
-  ORDER BY pledged DESC
+  ORDER BY 
+    pledged DESC
   ROWS UNBOUNDED PRECEDING
 ) AS category_year
 
 
 SELECT 
 FROM
-WHERE sport in (
+WHERE sport IN (
   ‘Football’,
   ‘Basketball’
 )
@@ -246,7 +247,7 @@ If you have 4 or less items you have the option to list out on one single line, 
 AND etas.state NOT IN (
   'Rhode Island',
   'South Dakota',
-   'Alaska',
+  'Alaska',
 )
 ```
 
