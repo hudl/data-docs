@@ -57,6 +57,7 @@ SELECT
   projects.name,
   users.email,
   projects.country,
+
   COUNT(backings.id) AS backings_count
 FROM ...
 ```
@@ -69,11 +70,12 @@ SELECT [DISTINCT]
   ...
 ```
 
-Always rename aggregates and function-wrapped columns:
+Always rename aggregates and function-wrapped columns, and leave a space between dimensions and aggregate columns:
 
 ```sql
 SELECT
   name,
+
   SUM(amount) AS sum_amount
 FROM ...
 ```
@@ -83,10 +85,10 @@ Long Window functions should be split across multiple lines: one for the `PARTIT
 
 ```sql
 SUM(1) OVER (
-  PARTITION BY 
+  PARTITION BY
     category_id,
     year
-  ORDER BY 
+  ORDER BY
     pledged DESC
   ROWS UNBOUNDED PRECEDING
 ) AS category_year
@@ -101,6 +103,7 @@ __GOOD__:
 ```sql
 SELECT
   projects.name AS project_name,
+
   COUNT(backings.id) AS backings_count
 FROM ksr.projects AS projects
 JOIN ksr.backings AS backings ON backings.project_id = projects.id
@@ -112,6 +115,7 @@ __BAD__:
 ```sql
 SELECT
   projects.name AS project_name,
+
   COUNT(backings.id) AS backings_count
 FROM ksr.projects AS projects, ksr.backings AS backings
 WHERE
@@ -125,6 +129,7 @@ Additional filters in the `JOIN` go on new indented lines:
 ```sql
 SELECT
   projects.name AS project_name,
+
   COUNT(backings.id) AS backings_count
 FROM ksr.projects AS projects
 JOIN ksr.backings AS backings ON projects.id = backings.project_id
@@ -137,6 +142,7 @@ The `ON` keyword and condition goes on the `JOIN` line:
 ```sql
 SELECT
   projects.name AS project_name,
+
   COUNT(backings.id) AS backings_count
 FROM ksr.projects AS projects
 JOIN ksr.backings AS backings ON projects.id = backings.project_id
@@ -180,12 +186,12 @@ WHERE country = 'US'
 
 ## `GROUP BY`
 
-GROUP BY/ORDER BY (group by and order by on line by itself, list of fields start on next line 2 spaces in. 
+GROUP BY/ORDER BY (group by and order by on line by itself, list of fields start on next line 2 spaces in.
 
 ```SQL
-GROUP BY 
-  schoolid, 
-  name, 
+GROUP BY
+  schoolid,
+  name,
   organization_type
 ```
 
@@ -195,7 +201,7 @@ GROUP BY
 `CASE` statements aren't always easy to format but try to align `WHEN` and `ELSE` together inside `CASE` and `END`:
 
 ```sql
-CASE 
+CASE
   WHEN category = 'Art' THEN backer_id
   ELSE NULL
 END
@@ -212,13 +218,13 @@ SUM(1) OVER (
   PARTITION BY
     category_id,
     year
-  ORDER BY 
+  ORDER BY
     pledged DESC
   ROWS UNBOUNDED PRECEDING
 ) AS category_year
 
 
-SELECT 
+SELECT
 FROM
 WHERE sport IN (
   ‘Football’,
@@ -241,7 +247,7 @@ FROM (
 ```
 
 ## IN/NOT IN Operator
-If you have 4 or less items you have the option to list out on one single line, otherwise use parentheses guidance shown below: 
+If you have 4 or less items you have the option to list out on one single line, otherwise use parentheses guidance shown below:
 
 ```SQL
 AND etas.state NOT IN (
