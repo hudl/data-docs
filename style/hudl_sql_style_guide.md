@@ -24,6 +24,7 @@ description: A guide to writing clean, clear, and consistent SQL.
 * Include links to hudl id constants or references to important links
 * All tables and views should adhere to all lowercase, words separated with underscores
 * Always use AS when creating aliases for columns, tables, subqueries
+* Avoid using numbers or special characters in aliases
 * Always capitalize SQL keywords (e.g., `SELECT` or `AS`)
 * Always capitalize SQL datatypes (e.g., `VARCHAR` or `DATE`)
 * Variable names and identifiers should be lower case and underscore separated and all other text should be capitalized:
