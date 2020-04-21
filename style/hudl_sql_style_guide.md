@@ -22,11 +22,18 @@ description: A guide to writing clean, clear, and consistent SQL.
 * No trailing whitespace.
 * 80 character limit per line
 * Include links to hudl id constants or references to important links
-* All tables and views should adhere to all lowercase, words separated with underscores
 * Always use AS when creating aliases for columns, tables, subqueries
-* Avoid using numbers or special characters in aliases
 * Always capitalize SQL keywords (e.g., `SELECT` or `AS`)
 * Always capitalize SQL datatypes (e.g., `VARCHAR` or `DATE`)
+* Comments should go near the top of your query, or at least near the closest `SELECT`
+* Try to only comment on things that aren't obvious about the query (e.g., why a particular ID is hardcoded, etc.)
+* All dates should be formatted as 'YYYY-MM-DD'
+* Use `!=` for the inequality operator
+
+## `Naming Conventions`
+
+* All tables and views should adhere to all lowercase, words separated with underscores
+* Avoid using numbers or special characters in CTE names
 * Variable names and identifiers should be lower case and underscore separated and all other text should be capitalized:
 
   __GOOD__:
@@ -35,8 +42,6 @@ description: A guide to writing clean, clear, and consistent SQL.
   __BAD__:
   `SELECT COUNT(*) AS backersCount`
 
-* Comments should go near the top of your query, or at least near the closest `SELECT`
-* Try to only comment on things that aren't obvious about the query (e.g., why a particular ID is hardcoded, etc.)
 * Don't use single letter variable names be as descriptive as possible given the context:
 
   __GOOD__:
@@ -45,9 +50,24 @@ description: A guide to writing clean, clear, and consistent SQL.
   __BAD__:
   `SELECT ksr.backings AS b`
 
-* Use [Common Table Expressions](http://www.postgresql.org/docs/8.4/static/queries-with.html) (CTEs) early and often, and name them well.
-* All dates should be formatted as 'YYYY-MM-DD'
-* Use `!=` for the inequality operator
+## `Common Table Expressions (CTEs)`
+
+* Use [Common Table Expressions](http://www.postgresql.org/docs/8.4/static/queries-with.html) often, and place them at the top
+* CTEs should be used to represent source tables to make code more readable
+* Only use full CTE Names when referencing them in the SELECT statement
+
+```sql
+WITH project_costs AS(
+  SELECT 
+    *
+  FROM ksr.projects
+) 
+
+SELECT
+  *
+FROM project_costs
+```
+
 
 ## `SELECT`
 
