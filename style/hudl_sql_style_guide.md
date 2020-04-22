@@ -57,7 +57,7 @@ description: A guide to writing clean, clear, and consistent SQL.
 * Only use full CTE names when referencing them in the SELECT statement
 
 ```sql
-WITH project_costs AS(
+WITH project_costs AS (
   SELECT 
     *
   FROM ksr.projects
