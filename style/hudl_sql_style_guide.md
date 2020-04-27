@@ -54,7 +54,7 @@ description: A guide to writing clean, clear, and consistent SQL.
 
 * Use [Common Table Expressions](http://www.postgresql.org/docs/8.4/static/queries-with.html) often, and place them at the top of code
 * CTEs should be used to represent **ALL** table/model references to make code more readable
-* Only use full CTE names when referencing them in the SELECT statement. Only use aliases to rename columns.
+* Only use full CTE names when referencing them in the `SELECT` statement. Only use aliases to rename columns.
 
 ```sql
 WITH project_costs AS (
