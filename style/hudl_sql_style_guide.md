@@ -30,7 +30,7 @@ description: A guide to writing clean, clear, and consistent SQL.
 * All dates should be formatted as 'YYYY-MM-DD'
 * Use `!=` for the inequality operator
 
-## `Naming Conventions`
+## Naming Conventions
 
 * All tables and views should adhere to all lowercase, words separated with underscores
 * Avoid using numbers or special characters in CTE names
@@ -50,7 +50,7 @@ description: A guide to writing clean, clear, and consistent SQL.
   __BAD__:
   `SELECT ksr.backings AS b`
 
-## `Common Table Expressions (CTEs)`
+## Common Table Expressions (CTEs)
 
 * Use [Common Table Expressions](http://www.postgresql.org/docs/8.4/static/queries-with.html) often, and place them at the top of code
 * CTEs should be used to represent **ALL** table/model references to make code more readable
