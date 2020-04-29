@@ -33,7 +33,7 @@ description: A guide to writing clean, clear, and consistent SQL.
 ## Naming Conventions
 
 * All tables and views should adhere to all lowercase, words separated with underscores
-* Models and tables with objects in the name should be plural (i.e. dim_product**s**)
+* Models with objects in the name should be plural (i.e. dim_product**s**)
 * Avoid using numbers or special characters in CTE names
 * Variable names and identifiers should be lower case and underscore separated and all other text should be capitalized:
 
