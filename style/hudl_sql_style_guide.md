@@ -5,8 +5,11 @@ description: A guide to writing clean, clear, and consistent SQL.
 ---
 
 # Purpose
+This document exists as a resource of guiding principles for those who build, refactor and work with data models. It contains Decision Science’s requirements and best practices for data modeling, SQL style and data testing.
 
-
+## Data Modeling
+## SQL Style Guide
+## Data Testing
 # Principles
 
 * We take a disciplined and practical approach to writing code.
