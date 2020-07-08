@@ -23,11 +23,11 @@ When it has been determined that a new data model is required to be built, the p
 
 The purpose of this is not to block or slow work. Rather, this is a means to ensure data quality, prevent painful re-work and identify dependencies that may have been overlooked. Each data model design will require the following:
 
-* State the purpose: 
+* __State the purpose__: 
     Every new data model that is introduced must have a clear purpose linked to business value. All models added should be done so with a high amount of rigor to       ensure data quality.
-* Start With the End in Mind: 
+* __Start With the End in Mind__: 
     Test Driven Development https://www.guru99.com/test-driven-development.html is when the tests are written before the code. While we don’t require a full set of     all tests in the Data Model Design process, an overview of test cases that will be considered and implemented should be included as a part of the data model       design review.
-* Identify the Grains: 
+* __Identify the Grains__: 
     Identify what the grains will be of the final table and of any tables from which you will be creating your final table.
 * Sample of table output with examples (can be hypothetical)
 * Column names and descriptions defined 
@@ -37,7 +37,7 @@ The purpose of this is not to block or slow work. Rather, this is a means to ens
 
   __Business-centric__ models should be created within the marts directory. __Source-centric__ models should be created within the staging directory. 
 
-***Many pre-existing business-centric models do not exist within the marts directory.
+*** Many pre-existing business-centric models do not exist within the marts directory.
             However, all new ones should be created there.
             
 * Define raw data as dbt sources: No raw data sources should be referenced other than in sources. If a source and staging layer do not exist for a model you want to build, you are required to build the needed sources and staging layers.
@@ -95,8 +95,6 @@ More in-depth documentation on this topic can be found here: https://docs.aws.am
     - Choose the largest dimension based on the size of the filtered dataset. Only the rows that are used in the join need to be distributed, so consider the size of     the dataset after filtering, not the size of the table.
     - Choose a column with high cardinality in the filtered result set. If you distribute a sales table on a date column, for example, you should probably get fairly     even data distribution, unless most of your sales are seasonal. However, if you commonly use a range-restricted predicate to filter for a narrow date period,       most of the filtered rows occur on a limited set of slices and the query workload is skewed.
     - Change some dimension tables to use ALL distribution. If a dimension table cannot be collocated with the fact table or other important joining tables, you can     improve query performance significantly by distributing the entire table to all of the nodes. Using ALL distribution multiplies storage space requirements and     increases load times and maintenance operations, so you should weigh all factors before choosing ALL distribution.
-
-
 
 ### Naming Conventions
 
@@ -157,7 +155,7 @@ FROM project_costs
 ```
 
 
-## `SELECT`
+### `SELECT`
 
 Align all columns to the first column on their own line:
 
@@ -203,7 +201,7 @@ SUM(1) OVER (
 ) AS category_year
 ```
 
-## `FROM`
+### `FROM`
 
 Only one table should be in the `FROM`. Never use `FROM`-joins:
 
@@ -232,7 +230,7 @@ WHERE
 ...
 ```
 
-## `JOIN`
+### `JOIN`
 Additional filters in the `JOIN` go on new indented lines:
 
 ```sql
@@ -279,7 +277,7 @@ LEFT JOIN ...
 JOIN ksr.locations AS locations ON ...
 ```
 
-## `WHERE`
+### `WHERE`
 
 Multiple `WHERE` clauses should go on different lines and begin with the SQL operator:
 
@@ -293,7 +291,7 @@ WHERE country = 'US'
 ...
 ```
 
-## `GROUP BY`
+### `GROUP BY`
 
 GROUP BY/ORDER BY (group by and order by on line by itself, list of fields start on next line 2 spaces in.
 
@@ -305,7 +303,7 @@ GROUP BY
 ```
 
 
-## `CASE`
+### `CASE`
 
 `CASE` statements aren't always easy to format but try to align `WHEN` and `ELSE` together inside `CASE` and `END`:
 
@@ -316,7 +314,7 @@ CASE
 END
 ```
 
-## Parentheses
+### Parentheses
 Open parentheses will start on same line and then start code on next line 2 spaces in
 Closing parentheses will be on the line after end of code, alias can be on same line as closing parentheses
 One exception is nested parentheses in where (any boolean comparisons) clause. If it can fit on one line put it on one line otherwise stick with parentheses rules
@@ -355,7 +353,7 @@ FROM (
 )
 ```
 
-## IN/NOT IN Operator
+### IN/NOT IN Operator
 If you have 4 or less items you have the option to list out on one single line, otherwise use parentheses guidance shown below:
 
 ```SQL
@@ -365,5 +363,33 @@ AND etas.state NOT IN (
   'Alaska',
 )
 ```
+
+## Data Testing and Quality
+### Things to consider
+* Source Data: Think outside the box, not just dbt. If you are working with a product team, what can they assist you with on their end to ensure data quality?  Think doomsday scenarios. What could go wrong and how would you catch it if it did? Types of dbt tests that may help:
+  - Accepted values 
+  - Null Tests
+  - At least one
+  - Unique
+  - Relationships
+* Recency:  How will you be alerted if this data isn’t updated?
+* Null values: Can this column contain null values and still be accurate?
+* Uniqueness: What is the unique key? 
+* Load: How much time are your additions adding to DBT Master build time? How long do the queries that end users will write take? Test the load by querying your  table in both Redash and Looker. Consider your sort and dist keys to improve these metrics
+
+### Requirements 
+* __New Models__ : New models will be held to the data design review standards and should contain at minimum the following tests:
+  - Unique Key
+  - Null tests on unique key and on any column that is used to join on
+  - Tests for recency
+
+* __Additions/Changes to Existing Models__: Any time you make changes to an existing model, you are responsible for standardizing the code to meet current guidelines. This includes the SQL style, testing and other convention guidelines found in this document.  
+  
+* __Fixing Bugs in Old Models__: Additions of tests are absolutely required when a bug is fixed to ensure that our model is resistant to the similar issue repeating in the future. In this instance, the tests added need to account for the bug(s) being fixed.
+  
+
+
+
+
 
 ## Tips
