@@ -37,9 +37,9 @@ The purpose of this is not to block or slow work. Rather, this is a means to ens
 
   __Business-centric__ models should be created within the marts directory. __Source-centric__ models should be created within the staging directory. 
 
-*** Many pre-existing business-centric models do not exist within the marts directory.
+> Many pre-existing business-centric models do not exist within the marts directory.
             However, all new ones should be created there.
-            
+
 * Define raw data as dbt sources: No raw data sources should be referenced other than in sources. If a source and staging layer do not exist for a model you want to build, you are required to build the needed sources and staging layers.
 * __Staging__ 
   - Used to clean sources
