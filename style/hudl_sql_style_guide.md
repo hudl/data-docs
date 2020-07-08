@@ -7,33 +7,33 @@ description: A guide to writing clean, clear, and consistent SQL.
 # Purpose
 This document exists as a resource of guiding principles for those who build, refactor and work with data models. It contains Decision Science’s requirements and best practices for data modeling, SQL style and data testing.
 
-## Data Modeling
-## SQL Style Guide
-## Data Testing
 # Principles
 
-* We take a disciplined and practical approach to writing code.
+* We take a disciplined and practical approach to writing code
 * We regularly check-in code to Github
-* We believe consistency in style is very important.
-* We demonstrate intent explicitly in code, via clear structure and comments where needed.
+* We believe consistency in style is very important
+* We demonstrate intent explicitly in code, via clear structure and comments where needed
+* We value DRY (do not repeat yourself) code and readability, but will favor readability over DRY when the two are in conflict
+* We believe everyone is responsible for code and modeling quality
 
-# Rules
+## Data Modeling
+### Data Modeling: The process of using business logic to aggregate or otherwise transform raw data
+### Data Model: A structure that organizes and standardizes data elements and how they relate to each other and a real-world entity or concept. In our case, a data model is a standardized representation of a business entity or concept. 
 
-## General
+When it has been determined that a new data model is required to be built, the person building the new model will be required to hold a data model design review. This is a process in which the builder of the data model will write-up their design plans and hold a meeting for these plans to be peer reviewed. 
 
-* No tabs. 2 spaces per indent.
-* No trailing whitespace.
-* 80 character limit per line
-* Include links to hudl id constants or references to important links
-* Always use AS when creating aliases for columns, tables, subqueries
-* Always capitalize SQL keywords (e.g., `SELECT` or `AS`)
-* Always capitalize SQL datatypes (e.g., `VARCHAR` or `DATE`)
-* Comments should go near the top of your query, or at least near the closest `SELECT`
-* Try to only comment on things that aren't obvious about the query (e.g., why a particular ID is hardcoded, etc.)
-* All dates should be formatted as 'YYYY-MM-DD'
-* Use `!=` for the inequality operator
+The purpose of this is not to block or slow work. Rather, this is a means to ensure data quality, prevent painful re-work and identify dependencies that may have been overlooked. Each data model design will require the following:
 
-## Naming Conventions
+1. State the purpose: 
+    Every new data model that is introduced must have a clear purpose linked to business value. All models added should be done so with a high amount of rigor to       ensure data quality.
+2. Start With the End in Mind: 
+    Test Driven Development https://www.guru99.com/test-driven-development.html is when the tests are written before the code. While we don’t require a full set of     all tests in the Data Model Design process, an overview of test cases that will be considered and implemented should be included as a part of the data model       design review.
+3. Identify the Grains: 
+    Identify what the grains will be of the final table and of any tables from which you will be creating your final table.
+4. Sample of table output with examples (can be hypothetical)
+5. Column names and descriptions defined 
+
+### Naming Conventions
 
 * All tables and views should adhere to all lowercase, words separated with underscores
 * Models with objects in the name should be plural (i.e. dim_product**s**)
@@ -54,7 +54,24 @@ This document exists as a resource of guiding principles for those who build, re
   __BAD__:
   `SELECT ksr.backings AS b`
 
-## Common Table Expressions (CTEs)
+## SQL Style Guide
+
+### General Rules
+
+* No tabs. 2 spaces per indent.
+* No trailing whitespace.
+* 80 character limit per line
+* Include links to hudl id constants or references to important links
+* Always use AS when creating aliases for columns, tables, subqueries
+* Always capitalize SQL keywords (e.g., `SELECT` or `AS`)
+* Always capitalize SQL datatypes (e.g., `VARCHAR` or `DATE`)
+* Comments should go near the top of your query, or at least near the closest `SELECT`
+* Try to only comment on things that aren't obvious about the query (e.g., why a particular ID is hardcoded, etc.)
+* All dates should be formatted as 'YYYY-MM-DD'
+* Use `!=` for the inequality operator
+
+
+### Common Table Expressions (CTEs)
 
 * Use [Common Table Expressions](http://www.postgresql.org/docs/8.4/static/queries-with.html) often, and place them at the top of code
 * CTEs should be used to represent **ALL** table/model references to make code more readable
