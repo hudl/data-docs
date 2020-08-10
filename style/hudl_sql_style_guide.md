@@ -66,17 +66,16 @@ The purpose of this is not to block or slow work. Rather, this is a means to ens
   - Is dbt’s default materialization if you do not specify one
   - Generally start with views for your models, and only change to another materialization when you're noticing performance problems.
   - Views are best suited for models that do not do significant transformation, e.g. renaming, recasting columns.
-  - As a general rule, all staging models should be materialized as views
+  - As a general rule, all sources should be materialized as views
   - As a general rule, you will want the view to be late-binding. This is currently the default in our dbt project and does not need to be specified in every file.     For  more information on why we do this, you can check out this article: https://blog.getdbt.com/using-redshift-s-late-binding-views-with-dbt/
 
 * __Ephemeral__
   - Use for very light-weight transformations that are early on in your DAG
   - Use when code will be re-used in multiple files to help keep code DRY. However, if this code won’t be re-used, consider making it a       CTE rather than it’s own file.
-  - Should be used when the piece of logic needs to be referenced in multiple downstream files. 
   - This data should not need to be queried by end users and only needs to be referenced for the purposes of data modeling
 
 * __Incremental__
-  - Allows dbt to insert or update records into a table since the last time that dbt was run
+  - Allows dbt to insert or update records into a table based on the time frame supplied in the incremental
   - Incremental models are best for event-style data (ie: the user activity model)
   - Use incremental models when your dbt runs are becoming too slow (don't start with incremental models)
   - Be aware that the need for full-refreshing will add complication to this model and make sure that the benefits outweigh the potential downfalls that may come       with higher maintenance.
