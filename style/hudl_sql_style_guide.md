@@ -19,7 +19,7 @@ This document exists as a resource of guiding principles for those who build, re
 ### Data Modeling: The process of using business logic to aggregate or otherwise transform raw data
 ### Data Model: A structure that organizes and standardizes data elements and how they relate to each other and a real-world entity or concept. In our case, a data model is a standardized representation of a business entity or concept. 
 
-When it has been determined that a new data model is required to be built, the person building the new model will be required to hold a data model design review. This is a process in which the builder of the data model will write-up their design plans and hold a meeting for these plans to be peer reviewed. 
+When it has been determined that a new data model is required, the person building the new model will be required to hold a data model design review. This is a process in which the builder of the data model will write-up their design plans and hold a meeting for these plans to be peer reviewed. 
 
 The purpose of this is not to block or slow work. Rather, this is a means to ensure data quality, prevent painful re-work and identify dependencies that may have been overlooked. Each data model design will require the following:
 
