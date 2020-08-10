@@ -60,7 +60,7 @@ The purpose of this is not to block or slow work. Rather, this is a means to ens
 * __Table__
   - Use the table materialization for any models being queried by BI tools (ie. Looker), to give your end user a faster experience
   - Also use the table materialization for any slower transformations that are used by many downstream models
-  - Are fast to query but take a long time to build, especially when they contain complex transformations and or a large amount of data, so keep this in mind when     selecting this materialization
+  - Are fast to query but take longer to build, especially when they contain complex transformations and or a large amount of data, so keep this in mind when     selecting this materialization
 * __View__
   - Builds faster, but requires more time for the end user to query. 
   - Is dbt’s default materialization if you do not specify one
