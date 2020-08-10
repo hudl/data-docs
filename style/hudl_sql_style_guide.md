@@ -71,7 +71,7 @@ The purpose of this is not to block or slow work. Rather, this is a means to ens
 
 * __Ephemeral__
   - Use for very light-weight transformations that are early on in your DAG
-  - Use when code will be re-used in multiple files to help keep code DRY (do not repeat yourself). However, if this code won’t be re-used, consider making it a       CTE rather than it’s own file.
+  - Use when code will be re-used in multiple files to help keep code DRY. However, if this code won’t be re-used, consider making it a       CTE rather than it’s own file.
   - Should be used when the piece of logic needs to be referenced in multiple downstream files. 
   - This data should not need to be queried by end users and only needs to be referenced for the purposes of data modeling
 
