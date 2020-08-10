@@ -66,7 +66,7 @@ The purpose of this is not to block or slow work. Rather, this is a means to ens
   - Is dbt’s default materialization if you do not specify one
   - Generally start with views for your models, and only change to another materialization when you're noticing performance problems.
   - Views are best suited for models that do not do significant transformation, e.g. renaming, recasting columns.
-  - As a general rule, all sources should be materialized as views
+  - As a general rule, all staging models should be materialized as views
   - As a general rule, you will want the view to be late-binding. This is currently the default in our dbt project and does not need to be specified in every file.     For  more information on why we do this, you can check out this article: https://blog.getdbt.com/using-redshift-s-late-binding-views-with-dbt/
 
 * __Ephemeral__
