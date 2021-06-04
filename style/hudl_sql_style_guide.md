@@ -8,7 +8,7 @@ description: A guide to writing clean, clear, and consistent SQL.
 This document exists as a resource of guiding principles for those who build, refactor and work with data models. It contains Decision Science’s requirements and best practices for data modeling, SQL style and data testing.
 
 # Principles
-* We take a disciplined and practical approach to writing code
+* We take a disciplined and practical approach to writing code 
 * We regularly check-in code to Github
 * We believe consistency in style is very important
 * We demonstrate intent explicitly in code, via clear structure and comments where needed
